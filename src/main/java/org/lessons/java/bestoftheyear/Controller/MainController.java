@@ -2,9 +2,12 @@ package org.lessons.java.bestoftheyear.Controller;
 
 import org.lessons.java.bestoftheyear.Classes.Movie;
 import org.lessons.java.bestoftheyear.Classes.Song;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +68,46 @@ public class MainController {
         }
 
         model.addAttribute("songs", String.join(", ", songsTitles));
+        return "songs";
+    }
+
+    @GetMapping("/movies/{id}")
+    public String getMovieById(Model model, @PathVariable int id){
+
+        String selMovie = null;
+
+        for (Movie movie : listMovies()) {
+            if(movie.getId() == id){
+                selMovie = "ID: " + movie.getId() + " - " + " Title: " + movie.getTitle();
+            }
+
+            if(selMovie == null){
+                selMovie = "Movie ID not found";
+            }
+        }
+
+        model.addAttribute("movie", selMovie);
+
+        return "movies";
+    }
+
+    @GetMapping("/songs/{id}")
+    public String getSongById(Model model, @PathVariable int id){
+
+        String selSong = null;
+
+        for (Song song : listSongs()) {
+            if(song.getId() == id){
+                selSong = "ID: " + song.getId() + " - " + " Title: " + song.getTitle();
+            }
+
+            if(selSong == null){
+                selSong = "Song ID not found";
+            }
+        }
+
+        model.addAttribute("song", selSong);
+
         return "songs";
     }
 
