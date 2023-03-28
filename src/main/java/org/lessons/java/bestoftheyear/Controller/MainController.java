@@ -47,26 +47,34 @@ public class MainController {
     @GetMapping("/movies")
     public String getBestMovies(Model model){
 
-        List<String> moviesTitles = new ArrayList<>();
+//        List<String> moviesTitles = new ArrayList<>();
+//
+//        for (Movie movie : listMovies()) {
+//            moviesTitles.add(movie.getTitle());
+//        }
+//
+//        model.addAttribute("movies", String.join(", ", moviesTitles));
 
-        for (Movie movie : listMovies()) {
-            moviesTitles.add(movie.getTitle());
-        }
+        List<Movie> moviesList = listMovies();
+        model.addAttribute("movies", moviesList);
 
-        model.addAttribute("movies", String.join(", ", moviesTitles));
         return "movies";
     }
 
     @GetMapping("/songs")
     public String getBestSongs(Model model){
 
-        List<String> songsTitles = new ArrayList<>();
+//        List<String> songsTitles = new ArrayList<>();
+//
+//        for (Song song : listSongs()) {
+//            songsTitles.add(song.getTitle());
+//        }
+//
+//        model.addAttribute("songs", String.join(", ", songsTitles));
 
-        for (Song song : listSongs()) {
-            songsTitles.add(song.getTitle());
-        }
+        List<Song> songsList = listSongs();
+        model.addAttribute("songs", songsList);
 
-        model.addAttribute("songs", String.join(", ", songsTitles));
         return "songs";
     }
 

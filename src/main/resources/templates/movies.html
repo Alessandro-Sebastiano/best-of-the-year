@@ -8,8 +8,9 @@
     <title>Movies</title>
 </head>
 <body>
-<span th:text="${movies}"></span>
-
+<ul th:if="${movies}">
+    <li th:each="movie: ${movies}"><a th:href="@{/movies/{id}(id=${movie.getId})}" th:text="${movie.getTitle}"></a></li>
+</ul>
 <span th:text="${movie}"></span>
 </body>
 </html>

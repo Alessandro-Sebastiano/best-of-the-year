@@ -8,7 +8,13 @@
     <title>Songs</title>
 </head>
 <body>
-<span th:text="${songs}"></span>
+
+<ul>
+    <li th:each="song: ${songs}">
+        <a th:href="@{/songs/{id}(id=${song.getId})}" th:text="${song.getTitle}"></a>
+    </li>
+</ul>
+
 <span th:text="${song}"></span>
 </body>
 </html>
